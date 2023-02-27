@@ -121,7 +121,7 @@ Thread.Sleep(5000);
 
 
 
-IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[2]/td[1]"));     //
+IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[2]/td[1]"));     //sometimes work,sometime not
 
 if(newCode.Text == "Feb2050")
 {
@@ -140,8 +140,8 @@ Thread.Sleep(5000);
 
 //Click on new Time record Edit Button
 
-IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[3]/td[5]/a[1]"));
-editButton.Click();
+IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[3]/td[5]/a[1]"));   //
+editButton.Click();   
 Thread.Sleep(3000);
 
 
