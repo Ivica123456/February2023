@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace February2023.Pages
 
         {
             //Create new button
+
+            Thread.Sleep(1500);
 
             IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
             createNewButton.Click();
@@ -41,11 +44,20 @@ namespace February2023.Pages
             CodeTextBox.SendKeys("Feb2050");
             Thread.Sleep(2000);
 
+            
+
+
+
+
             // Input description in description textbox
 
             IWebElement descriptionTextBox = driver.FindElement(By.Id("Description"));
             descriptionTextBox.SendKeys("sun");
             Thread.Sleep(2000);
+
+            
+
+
 
 
 
@@ -55,16 +67,22 @@ namespace February2023.Pages
             PriceTextBox.SendKeys("12");
             Thread.Sleep(2000);
 
+            
+
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
             Thread.Sleep(2000);
+            
 
+           
             //Check if new time record has been created
 
             IWebElement goToLastPage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPage.Click();
             Thread.Sleep(5000);
 
+
+            
 
 
 
@@ -98,6 +116,15 @@ namespace February2023.Pages
             IWebElement goToLastPage1 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPage1.Click();
             Thread.Sleep(4000);
+
+            //IWebElement checkNewDescription = driver.FindElement
+            
+           
+            
+
+
+
+
         }
 
         public void DeleteTM(IWebDriver driver)
@@ -121,22 +148,22 @@ namespace February2023.Pages
 
             IWebElement feb2050 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[3]/td[1]"));
 
-            Thread.Sleep(4000);
+            
 
-            if (feb2050.Text == "Feb2050")
-            {
+            //if (feb2050.Text == "Feb2050")
+            //{
 
-                Console.WriteLine("Record has not been deleted successfully");
-            }
+            //    Console.WriteLine("Record has not been deleted successfully");
+            //}                                                                               //freeze beacause assert
 
-            else
+            //else
 
-            {
+            //{
 
-                Console.WriteLine("Deleted Feb2050 successfully");
-            }
+            //    Console.WriteLine("Deleted Feb2050 successfully");
+            //}
 
-            driver.Quit();
+            ////driver.Quit();
 
 
         }
