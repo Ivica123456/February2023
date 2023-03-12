@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -88,23 +89,58 @@ namespace February2023.Pages
 
 
         }
+           public string GetCode(IWebDriver driver)
+           {
+            IWebElement actualCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            return actualCode.Text;
+           
 
-        public void EditTM(IWebDriver driver)
+
+           }
+           public string GetDescription(IWebDriver driver)
+           {
+            IWebElement actualDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            return actualDescription.Text;
+           }
+           
+           public string GetPrice(IWebDriver driver)
+           {
+            IWebElement actualPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]"));
+            return actualPrice.Text;
+           }
+
+
+
+        public void EditTM(IWebDriver driver , string description , string code ,string price )
         {
             //Click on new Time record Edit Button
 
-            IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[3]/td[5]/a[1]"));   //
+            IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[3]/td[5]/a[1]"));   
             editButton.Click();
             Thread.Sleep(3000);
 
 
-            // Input edited Descriptopn into Description textBox
+            // edit code textbox 
+            IWebElement editCodeTextbox = driver.FindElement(By.Id("Code"));
+            editCodeTextbox.Clear();
+            editCodeTextbox.SendKeys(code);
+            Thread.Sleep(3500);
 
-            IWebElement editDescriptionTest = driver.FindElement(By.Id("Description"));
-            editDescriptionTest.Clear();
-            editDescriptionTest.SendKeys("Veljaca2023");
+            // edit description textbox
+            IWebElement editDescriptionTextbox = driver.FindElement(By.Id("Description"));
+            editDescriptionTextbox.Clear();
+            editDescriptionTextbox.SendKeys(description);
+            Thread.Sleep(3500);
 
-            Thread.Sleep(4000);
+            // edit price textbox
+            IWebElement editPriceTextbox = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
+            editPriceTextbox.Clear();
+            editPriceTextbox.SendKeys(price);
+            Thread.Sleep(3500);
+
+
+
+
 
             // Click on save button
 
@@ -117,15 +153,38 @@ namespace February2023.Pages
             goToLastPage1.Click();
             Thread.Sleep(4000);
 
-            //IWebElement checkNewDescription = driver.FindElement
-            
-           
-            
 
 
 
+
+
+
+            //Validation for specflow
 
         }
+
+        public string GetEditedDescription(IWebDriver driver)
+        {
+            IWebElement createdDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+            return createdDescription.Text;
+        }
+
+        public string GetEditedCode(IWebDriver driver)
+        {
+            IWebElement createdCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+            return createdCode.Text;
+        }
+
+        public string GetEditedPrice(IWebDriver driver)
+        {
+            IWebElement createdPrice = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
+            return createdPrice.Text;
+        }
+
+
+
+
+
 
         public void DeleteTM(IWebDriver driver)
         {
