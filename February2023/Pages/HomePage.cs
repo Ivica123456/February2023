@@ -1,4 +1,5 @@
 ﻿using February2023.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -28,6 +29,17 @@ namespace February2023.Pages
 
         public void GoToEmployeesPage(IWebDriver driver)
         {
+            IWebElement adminbtn1 = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
+            adminbtn1.Click();
+            Thread.Sleep(1000);
+
+
+            IWebElement employeePage = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[2]/a"));
+            employeePage.Click();
+
+
+
+
 
         }
     }
