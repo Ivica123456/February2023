@@ -1,4 +1,5 @@
 ﻿using February2023.Utilities;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,50 @@ namespace February2023.Pages
 
         public void EditEmployee(IWebDriver driver)
         {
+            // Go to last page
+            Thread.Sleep(5000);
+            driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span")).Click();
+            Thread.Sleep(5000);
+
+            //Inspect last add record
+            //IWebElement newaddedRecord = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+
+            //if (newaddedRecord.Text == "Nikita")
+            //{
+            //    driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[3]/a[1]")).Click();
+            //    Thread.Sleep(5000);
+            //}
+            //else
+            //{
+            //    Assert.Fail("Record to be editted does not match newly added record");
+            //}
+
+            // Click on Edit button on the last added record
+            driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[3]/a[1]")).Click();
+
+            // clear name field
+
+            IWebElement editname = driver.FindElement(By.Id("Name"));
+            editname.Clear();
+
+            // Enter new record in name field
+            driver.FindElement(By.Id("Name")).SendKeys("Goranko");
+
+            //Click on Save button
+            driver.FindElement(By.Id("SaveButton")).Click();
+            Thread.Sleep(3000);
+
+            // Click on Back to list 
+            driver.FindElement(By.XPath("//*[@id=\"container\"]/div/a")).Click();
+            Thread.Sleep(3000);
+
+            // go to lastpage
+            driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span")).Click();
+            Thread.Sleep(3000);
+
+            IWebElement neweditedrecord = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+
+            Assert.That(neweditedrecord.Text == "Goranko", "Record is not edited");
 
         }
 
