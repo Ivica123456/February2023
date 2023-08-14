@@ -99,6 +99,22 @@ namespace February2023.Pages
 
         public void DeleteEmployee(IWebDriver driver)
         {
+            // Go to last Page 
+            Thread.Sleep(5000);
+            driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[4]/a[4]/span")).Click();
+            Thread.Sleep(5000);
+
+            // Click on delete button
+            driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[3]/a[2]")).Click();
+            Thread.Sleep(2000);
+
+            driver.SwitchTo().Alert().Accept();
+
+            Thread.Sleep(4000);
+
+            IWebElement deletedname = driver.FindElement(By.XPath("//*[@id=\"usersGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+
+            Assert.That(deletedname.Text != "Goranko", "Record hasn't been deleted");
 
         }
     }
