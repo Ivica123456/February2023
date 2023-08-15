@@ -18,14 +18,14 @@ namespace February2023.Tests
         EmployeePage employeePageObj = new EmployeePage();
         HomePage homePageobj = new HomePage();
 
-     
+       //Create Employee test
         [Test]
         public void CreateEmployeeTest()
         {
         homePageobj.GoToEmployeesPage(driver);
         employeePageObj.CreateEmployee(driver);
         }
-
+        //Edit Employee test
         [Test]
         public void EditEmployeeTest()
         {
